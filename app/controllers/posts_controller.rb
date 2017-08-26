@@ -17,11 +17,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    get_params_id
   end
 
   def update
-    @post = Post.find(params[:id])
+    get_params_id
     if @post.update_attributes(post_params)
       redirect_to @post
     else
@@ -30,15 +30,19 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id]).destroy
+    get_params_id.destroy
     redirect_to posts_path
   end
 
   def show
-    @post = Post.find(params[:id])
+    get_params_id
   end
 
   private
+
+  def get_params_id
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:title, :body)
