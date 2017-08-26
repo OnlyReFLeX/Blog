@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
+  #Главная страница index
   def index
     @posts = Post.all
   end
-
+  # Новый пост
   def new
     @post = Post.new
   end
@@ -16,6 +17,7 @@ class PostsController < ApplicationController
     end
   end
 
+  # Редактирование поста
   def edit
     get_params_id
   end
@@ -29,17 +31,19 @@ class PostsController < ApplicationController
     end
   end
 
+  # Удаление поста
   def destroy
     get_params_id.destroy
     redirect_to posts_path
   end
 
+  # Просмотр поста
   def show
     get_params_id
   end
 
   private
-
+  #ПОЛУЧЕНИЕ ПОСТА ИЗ :id
   def get_params_id
     @post = Post.find(params[:id])
   end
