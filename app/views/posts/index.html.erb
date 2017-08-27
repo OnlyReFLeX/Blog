@@ -2,7 +2,7 @@
 
 <% @posts.each do |post| %>
   <hr>
-  Title: <%= post.title %><br>
-  Body: <%= post.body %><br>
+  Заголовок: <%= post.title %><br>
+  Сообщение: <%= post.body %><br>
   <%= link_to "Show", post_path(post) %> | <%= link_to "Edit", edit_post_path(post) %> | <%= link_to "Delete",  post_path(post), method: :delete, data: { confirm: "Вы действительно хотите удалить эту статью ?"} %>
 <% end %>
