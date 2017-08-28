@@ -2,6 +2,8 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
+  has_many :comments
+
   def self.search(search)
   if search
     where('title ILIKE ? OR body ILIKE ?', "%#{search}%", "%#{search}%")
