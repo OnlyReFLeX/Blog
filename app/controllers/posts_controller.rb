@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   #Главная страница index
   def index
-    @posts = Post.search(params[:search]).paginate(:per_page => 10, :page => params[:page])
+    @posts = Post.search(params[:search]).paginate(:per_page => 10, :page => params[:page]).order("created_at DESC")
   end
   # Новый пост
   def new
