@@ -5,7 +5,7 @@
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-3"><%= post.title %></h1>
-      <p class="lead"> <%= post.body %></p>
+      <p class="lead"> <%= post.body.html_safe %></p>
       <%= link_to "Show", post_path(post), class: "badge badge-pill badge-info" %> <%= link_to "Edit", edit_post_path(post), class: "badge badge-pill badge-info" %> <%= link_to "Delete",  post_path(post), method: :delete, class: "badge badge-pill badge-info", data: { confirm: "Вы действительно хотите удалить эту статью ?"} %>
 
     </div>
