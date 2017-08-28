@@ -30,10 +30,10 @@
               <%= link_to "Новый пост", new_post_path, class: "btn btn-outline-primary my-2 my-sm-0" %>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Поиск">
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Поиск</button>
-          </form>
+          <%= form_tag posts_path, :method => 'get', class: "form-inline my-2 my-lg-0" do %>
+              <%= text_field_tag :search, params[:search], class: "form-control mr-sm-2", placeholder: 'Поиск' %>
+              <%= submit_tag "Поиск", :name => nil, class: "btn btn-outline-primary my-2 my-sm-0" %>
+          <% end %>
         </div>
       </nav>
     </div>

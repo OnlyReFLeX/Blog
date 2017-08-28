@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   #Главная страница index
   def index
-    @posts = Post.all
+    @posts = Post.search(params[:search]).paginate(:per_page => 10, :page => params[:page])
   end
   # Новый пост
   def new
