@@ -1,3 +1,4 @@
+<br>
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-3"><%= @post.title %></h1>
@@ -11,18 +12,20 @@
 </div>
 
 <h5>Комментарии:</h5>
-
-
 <% @post.comments.each do |comment| %>
 
-<p>
-  <%= comment.message %>
-</p>
-<p style="font-size: 10px; color: gray;">
-  <%= comment.created_at.in_time_zone('Moscow').strftime("%d-%m-%Y %H:%M") %>
-</p>
+<div class="card">
+  <div class="card-block">
 
-<hr>
+    <%= comment.message %>
+    <div>
+      <span style="font-size: 10px; color: gray;">
+        <%= comment.created_at.in_time_zone('Moscow').strftime("%d-%m-%Y %H:%M") %>
+      </span>
+    </div>
+
+  </div>
+</div><br>
 
 
 <% end %>
@@ -42,4 +45,4 @@
 
     <% end %>
   </div>
-</div>
+</div><br>
