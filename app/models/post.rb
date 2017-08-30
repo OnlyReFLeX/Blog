@@ -2,7 +2,9 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
-  has_many :comments,  dependent: :destroy 
+  has_many :comments,  dependent: :destroy
+
+  mount_uploader :image, ImageUploader
 
   def self.search(search)
   if search
