@@ -1,5 +1,17 @@
 <div class="row">
   <div class="col-sm-12">
+    
+    <% if @post.errors.any? %>
+      <div class="alert alert-danger">
+        <h5><%= t('common.errors') %></h5>
+        <ul>
+          <% @post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <%= form_for @post do |f| %>
       <div class="form-group row">
         <%= f.label :title, "Заголовок", class: "col-sm-2 col-form-label" %>
