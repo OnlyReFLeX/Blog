@@ -9,7 +9,7 @@
         <p class="lead"> <%= image_tag post.image.url(:thumb), class: 'img-thumbnail thumb' if post.image? %>
         <%= post.body.html_safe %></p>
       </section>
-      <%= link_to "Show", post_path(post), class: "badge badge-pill badge-info" %> <%= link_to "Edit", edit_post_path(post), class: "badge badge-pill badge-info" %> <%= link_to "Delete",  post_path(post), method: :delete, class: "badge badge-pill badge-info", data: { confirm: "Вы действительно хотите удалить эту статью ?"} %>
+      <%= link_to "Просмотр", post_path(post), class: "badge badge-pill badge-info" %> <%= link_to "Редактировать", edit_post_path(post), class: "badge badge-pill badge-info" %> <%= link_to "Удалить",  post_path(post), method: :delete, class: "badge badge-pill badge-info", data: { confirm: "Вы действительно хотите удалить эту статью ?"} %>
 
     </div>
   </div>

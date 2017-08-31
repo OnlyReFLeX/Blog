@@ -7,7 +7,7 @@
     <span style="font-size: 10px; color: gray;">
       <%= @post.created_at.in_time_zone('Moscow').strftime("%d-%m-%Y %H:%M") %>
     </span><br>
-    <%= link_to "Edit", edit_post_path(@post), class: "badge badge-pill badge-info" %>  <%= link_to "Delete",  post_path(@post), method: :delete, class: "badge badge-pill badge-info", data: { confirm: "Вы действительно хотите удалить эту статью ?"} %>
+    <%= link_to "Редактировать", edit_post_path(@post), class: "badge badge-pill badge-info" %>  <%= link_to "Удалить",  post_path(@post), method: :delete, class: "badge badge-pill badge-info", data: { confirm: "Вы действительно хотите удалить эту статью ?"} %>
 
   </div>
 </div>
