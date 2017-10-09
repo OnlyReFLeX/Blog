@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :get_params_id, only: [:edit, :update, :destroy, :show]
+
   #Главная страница index
   def index
     @posts = Post.search(params[:search]).paginate(:per_page => 10, :page => params[:page]).order("created_at DESC")
@@ -21,7 +23,6 @@ class PostsController < ApplicationController
 
   # Редактирование поста
   def edit
-    get_params_id
     if !user_signed_in? #ЕСЛИ ВОЙДЕН ТО FALSE ЕСЛИ НЕТ ТО TRUE
       redirect_to posts_path
       flash[:alert] = "У вас недостаточно прав"
@@ -33,7 +34,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    get_params_id
     if !user_signed_in? #ЕСЛИ ВОЙДЕН ТО FALSE ЕСЛИ НЕТ ТО TRUE
       redirect_to posts_path
     elsif @post.user_id == current_user.id #СРАВНЕНИЕ ЕГО ЛИ ПОСТ
@@ -47,7 +47,6 @@ class PostsController < ApplicationController
 
   # Удаление поста
   def destroy
-    get_params_id
     if !user_signed_in? #ЕСЛИ ВОЙДЕН ТО FALSE ЕСЛИ НЕТ ТО TRUE
       redirect_to posts_path
       flash[:alert] = "У вас недостаточно прав"
@@ -63,7 +62,6 @@ class PostsController < ApplicationController
 
   # Просмотр поста
   def show
-    get_params_id
   end
 
   private
