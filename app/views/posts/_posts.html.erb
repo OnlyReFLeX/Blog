@@ -4,7 +4,7 @@
 
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <span class="badge badge-default">Автор: <%= post.user.username %></span>
+      <span class="badge badge-default">Автор: <%= post.user.username %></span><span style="font-size: 10px"> <%= last_seen_at_or_online(post.user.last_seen_at) %></span>
       <h1 class="display-3"><%= post.title %></h1>
       <section class="post-body clearfix">
         <p class="lead"> <%= image_tag post.image.url(:thumb), class: 'img-thumbnail thumb' if post.image? %>

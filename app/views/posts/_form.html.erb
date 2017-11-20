@@ -32,7 +32,7 @@
           <%= f.file_field :image, class: "form-control" %>
         </div>
       </div>
-      <%= f.submit 'Сохранить', class: "btn btn-primary"%>
+      <%= f.submit @post.new_record? ? 'Создать' : 'Сохранить', class: "btn btn-primary"%>
     <% end %>
   </div>
 </div>
