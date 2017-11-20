@@ -1,7 +1,7 @@
 <br>
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <span class="badge badge-default">Автор: <%= @post.user.username %></span> <br>
+    <span class="badge badge-default">Автор: <%= @post.user.username %></span><span style="font-size: 10px"> <%= last_seen_at_or_online(@post.user.last_seen_at) %></span> <br>
     <h1 class="display-3"><%= @post.title %></h1>
     <p class="lead"> <%= @post.body.html_safe %></p>
     <%= image_tag @post.image.url(:large), class: 'image-show' if @post.image? %><br>
@@ -21,7 +21,7 @@
 
   <div class="card">
     <div class="card-block">
-      <span class="badge badge-default"><%= comment.user.username %></span><br>
+      <span class="badge badge-default"><%= comment.user.username %></span><span style="font-size: 10px"> <%= last_seen_at_or_online(comment.user.last_seen_at) %></span><br>
       <%= comment.message %>
       <div>
         <span style="font-size: 10px; color: gray;">
