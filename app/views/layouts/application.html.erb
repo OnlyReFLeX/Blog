@@ -23,9 +23,11 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Посты <span class="sr-only">(current)</span></a>
-            </li>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <a class="nav-link" href="users/posts/<%= current_user.id %>">Мои посты</a>
+              </li>
+            <% end %>
             <li class="nav-item">
               <%= link_to "Новый пост", new_post_path, class: "btn btn-outline-primary my-2 my-sm-0" %>
             </li>
