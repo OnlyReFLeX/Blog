@@ -1,4 +1,14 @@
-<% publish_to "/posts" do %>
-  $('.posts').html("<%= j render 'posts' %>");
-  console.log('<%= @post.body %>')
-<% end %>
+<% if @post.errors.present? %>
+  $('.post-errors').html('<div class="alert alert-danger" role="alert"></div>')
+  <% @post.errors.full_messages.each do |message| %>
+    $('.alert-danger').append('<%= j message %></br>')
+  <% end %>
+<% else %>
+  <% publish_to "/posts" do %>
+    $('.posts').html("<%= j render 'posts' %>");
+  <% end %>
+  window.location = "<%= post_path(@post) %>";
+  <% flash[:notice] = "Пост успешно создан" %>
+<%end%>
+
+

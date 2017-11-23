@@ -13,11 +13,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-      if @post.save
-      else
-        render :new
-      end
-
+    @post.save
   end
 
   # Редактирование поста

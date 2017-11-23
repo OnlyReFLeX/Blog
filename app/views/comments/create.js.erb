@@ -1,6 +1,7 @@
 <% if @comment.errors.present? %>
+    $('.comment-errors').html('<div class="alert alert-danger" role="alert"></div>');
   <% @comment.errors.full_messages.each do |message| %>
-  $('.comment-errors').html('<%= j message %>')
+    $('.alert-danger').append('<%= j message %></br>');
   <% end %>
 <% else %>
   <% publish_to "/posts/#{@post.id}/comments" do %>
