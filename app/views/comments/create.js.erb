@@ -1,0 +1,11 @@
+<% if @comment.errors.present? %>
+  <% @comment.errors.full_messages.each do |message| %>
+  $('.comment-errors').html('<%= j message %>')
+  <% end %>
+<% else %>
+  <% publish_to "/posts/#{@post.id}/comments" do %>
+      $('.comments').html('<%= j render 'posts/comments' %>');
+  <% end %>
+  $('#comment_message').val('');
+  $('.comment-errors').html('');
+<%end%>

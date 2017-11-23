@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require private_pub
 //= require turbolinks
 //= require_tree .
 //= require trix

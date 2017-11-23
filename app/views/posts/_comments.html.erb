@@ -1,0 +1,14 @@
+<% @post.comments.each do |comment| %>
+  <div class="card">
+    <div class="card-block">
+      <span class="badge badge-default"><%= comment.user.username %></span><span style="font-size: 10px"> <%= last_seen_at_or_online(comment.user.last_seen_at) %></span><br>
+      <%= comment.message %>
+      <div>
+        <span style="font-size: 10px; color: gray;">
+          <%= comment.created_at.in_time_zone('Moscow').strftime("%d-%m-%Y %H:%M") %>
+        </span>
+      </div>
+
+    </div>
+  </div><br>
+<% end %>
