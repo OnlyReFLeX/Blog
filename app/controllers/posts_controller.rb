@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   before_action :get_params_id, only: [:edit, :update, :destroy, :show]
+  before_action :get_posts_list, only: [:index, :create]
 
   #Главная страница index
   def index
-    @posts = Post.search(params[:search]).paginate(:per_page => 10, :page => params[:page]).order("created_at DESC")
   end
   # Новый пост
   def new
@@ -13,12 +13,11 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    if @post.save
-      redirect_to @post
-      flash[:notice] = "Успешно создано."
-    else
-      render :new
-    end
+      if @post.save
+      else
+        render :new
+      end
+
   end
 
   # Редактирование поста
@@ -68,6 +67,10 @@ class PostsController < ApplicationController
   #ПОЛУЧЕНИЕ ПОСТА ИЗ :id
   def get_params_id
     @post = Post.find(params[:id])
+  end
+
+  def get_posts_list
+   @posts = Post.search(params[:search]).paginate(:per_page => 10, :page => params[:page]).order("created_at DESC")
   end
 
   def post_params

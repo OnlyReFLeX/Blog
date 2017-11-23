@@ -2,6 +2,7 @@ ru:
   will_paginate:
     previous_label: '<'
     next_label: '>'
+    page_gap: '<span class="page-link">&hellip;</span>'
   common:
     errors: 'Ошибка'
   activerecord:

@@ -1,0 +1,4 @@
+<% publish_to "/posts" do %>
+  $('.posts').html("<%= j render 'posts' %>");
+  console.log('<%= @post.body %>')
+<% end %>
