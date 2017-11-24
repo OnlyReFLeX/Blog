@@ -1,0 +1,11 @@
+<% if @post.errors.present? %>
+  $('.post-errors').html('<div class="alert alert-danger" role="alert"></div>')
+  <% @post.errors.full_messages.each do |message| %>
+    $('.alert-danger').append('<%= j message %></br>')
+  <% end %>
+<% else %>
+  window.location = "<%= post_path(@post) %>";
+  <% flash[:notice] = "Пост успешно отредактирован" %>
+<%end%>
+
+

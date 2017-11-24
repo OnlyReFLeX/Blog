@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :get_params_id, only: [:edit, :update, :destroy, :show]
-  before_action :get_posts_list, only: [:index, :create]
-
+  before_action :get_posts_list, only: [:index, :create, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   #Главная страница index
   def index
   end
@@ -18,10 +18,7 @@ class PostsController < ApplicationController
 
   # Редактирование поста
   def edit
-    if !user_signed_in? #ЕСЛИ ВОЙДЕН ТО FALSE ЕСЛИ НЕТ ТО TRUE
-      redirect_to posts_path
-      flash[:alert] = "У вас недостаточно прав"
-    elsif @post.user_id == current_user.id #СРАВНЕНИЕ ЕГО ЛИ ПОСТ
+    if @post.user_id == current_user.id #СРАВНЕНИЕ ЕГО ЛИ ПОСТ
     else
       redirect_to posts_path
       flash[:alert] = "У вас недостаточно прав"
@@ -29,23 +26,17 @@ class PostsController < ApplicationController
   end
 
   def update
-    if !user_signed_in? #ЕСЛИ ВОЙДЕН ТО FALSE ЕСЛИ НЕТ ТО TRUE
-      redirect_to posts_path
-    elsif @post.user_id == current_user.id #СРАВНЕНИЕ ЕГО ЛИ ПОСТ
+    if @post.user_id == current_user.id #СРАВНЕНИЕ ЕГО ЛИ ПОСТ
       @post.update_attributes(post_params)
-      redirect_to @post
-      flash[:notice] = "Успешно сохранено."
     else
-      render :edit
+      redirect_to posts_path
+      flash[:alert] = "У вас недостаточно прав"
     end
   end
 
   # Удаление поста
   def destroy
-    if !user_signed_in? #ЕСЛИ ВОЙДЕН ТО FALSE ЕСЛИ НЕТ ТО TRUE
-      redirect_to posts_path
-      flash[:alert] = "У вас недостаточно прав"
-    elsif @post.user_id == current_user.id #СРАВНЕНИЕ ЕГО ЛИ ПОСТ
+    if @post.user_id == current_user.id #СРАВНЕНИЕ ЕГО ЛИ ПОСТ
       @post.destroy
       redirect_to posts_path
       flash[:notice] = "Успешно удалено."

@@ -1,25 +1,26 @@
 
+<div class="posts">
+  <% @posts.each do |post| %>
 
-<% @posts.each do |post| %>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <span class="badge badge-default">Автор: <%= post.user.username %></span><span style="font-size: 10px"> <%= last_seen_at_or_online(post.user.last_seen_at) %></span>
+        <h1 class="display-3"><%= post.title %></h1>
+        <section class="post-body clearfix">
+          <p class="lead"> <%= image_tag post.image.url(:thumb), class: 'img-thumbnail thumb' if post.image? %>
+          <%= post.body.html_safe %></p>
+        </section>
 
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <span class="badge badge-default">Автор: <%= post.user.username %></span><span style="font-size: 10px"> <%= last_seen_at_or_online(post.user.last_seen_at) %></span>
-      <h1 class="display-3"><%= post.title %></h1>
-      <section class="post-body clearfix">
-        <p class="lead"> <%= image_tag post.image.url(:thumb), class: 'img-thumbnail thumb' if post.image? %>
-        <%= post.body.html_safe %></p>
-      </section>
-
-      <%= link_to "Просмотр", post_path(post), class: "badge badge-pill badge-info" %>
-      <% if user_signed_in? && current_user == post.user %>
-      <%= link_to "Редактировать", edit_post_path(post), class: "badge badge-pill badge-info" %>
-      <%= link_to "Удалить",  post_path(post), method: :delete, class: "badge badge-pill badge-info", data: { confirm: "Вы действительно хотите удалить эту статью ?"} %>
-      <% end %>
+        <%= link_to "Просмотр", post_path(post), class: "badge badge-pill badge-info" %>
+        <% if user_signed_in? && current_user == post.user %>
+        <%= link_to "Редактировать", edit_post_path(post), class: "badge badge-pill badge-info" %>
+        <%= link_to "Удалить",  post_path(post), method: :delete, class: "badge badge-pill badge-info", data: { confirm: "Вы действительно хотите удалить эту статью ?"} %>
+        <% end %>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 
-<div class="container"><br>
-  <%= will_paginate @posts, renderer: 'BootstrapPaginationHelper::LinkRenderer' %>
+  <div class="container"><br>
+    <%= will_paginate @posts, renderer: 'BootstrapPaginationHelper::LinkRenderer' %>
+  </div>
 </div>
