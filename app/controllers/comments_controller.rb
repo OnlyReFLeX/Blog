@@ -1,8 +1,9 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create(comment_params)
-    @comment.user_id = current_user.id #or whatever is you session name
+    @comment.user_id = current_user.id
     @comment.save
   end
 
