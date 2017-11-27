@@ -25,7 +25,7 @@
           <ul class="navbar-nav mr-auto">
             <% if user_signed_in? %>
               <li class="nav-item">
-                <%= link_to "Мои посты", {:controller => :users, :action => :posts, id: current_user.id}, class: "nav-link" %>
+                <a href="../../users/posts/<%= current_user.id %>" class="nav-link" >Мои посты</a>
               </li>
             <% end %>
             <li class="nav-item">
