@@ -50,6 +50,10 @@ class PostsController < ApplicationController
   def show
   end
 
+  def myposts
+    @posts = Post.where(user_id: current_user.id).paginate(:per_page => 10, :page => params[:page]).order("created_at DESC")
+  end
+
   private
   #ПОЛУЧЕНИЕ ПОСТА ИЗ :id
   def get_params_id
